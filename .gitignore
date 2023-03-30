@@ -1,0 +1,13 @@
+# 忽略插件文件夹
+lua/plugins
+plugin/
+
+# 忽略缓存文件夹
+cache/
+
+# 忽略lsp文件夹
+lua/lsp_servers
+
+# 忽略会话文件夹
+sessions/
+
