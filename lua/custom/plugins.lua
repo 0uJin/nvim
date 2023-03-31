@@ -173,9 +173,9 @@ local plugins = {
 
     -- 多光标选择
     {
-        -- package = { 'mg979/vim-visual-multi' },
-        -- configs = 'configs.vim-visual-multi.init',
-        -- command = 'packadd! vim-visual-multi',
+        package = { 'mg979/vim-visual-multi' },
+        configs = 'configs.vim-visual-multi.init',
+        command = 'packadd! vim-visual-multi',
     },
 
 }
