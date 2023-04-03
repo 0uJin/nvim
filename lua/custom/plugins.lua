@@ -178,6 +178,12 @@ local plugins = {
         command = 'packadd! vim-visual-multi',
     },
 
+    -- 数值快速转换, ture <---> false, == <---> != , 等...
+    {
+        package = {'AndrewRadev/switch.vim'},
+        configs = 'configs.switch.init'
+    },
+
 }
 
 -- 启用插件
