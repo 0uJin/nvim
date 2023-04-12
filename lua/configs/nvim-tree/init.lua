@@ -19,7 +19,7 @@ local config = {
     -- ignore_buffer_on_setup = true, -- 启动时开始文件树
     -- open_on_setup = true, -- 启动时开启文件树
     -- auto_close = true, -- 最后一个buffer关闭时自动退出vim
-    open_on_setup_file = false,
+    -- open_on_setup_file = false,
     open_on_tab = true, -- todo
     sort_by = "name",
     root_dirs = {},
@@ -138,7 +138,7 @@ local config = {
         update_cwd  = true,
         ignore_list = { "term", 'DiffviewFiles', 'DiffviewFileHistory' },
     },
-    ignore_ft_on_setup = {},
+    -- ignore_ft_on_setup = {},
     system_open = {
         cmd = "",
         args = {},
