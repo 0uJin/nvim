@@ -39,40 +39,7 @@ local config = {
         relativenumber = false,
         signcolumn = "yes",
         mappings = {
-            custom_only = false,
-            list = {
-                { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },                     -- 打开文件
-                { key = { "<C-e>", "q" },                 action = "close" },                    -- 关闭文件树
-                -- { key = {"<C-o>", "<tab>", "<CR>"}, action = "preview" },           -- 在新buffer中打开文件
-                { key = "<tab>",                          action = "preview" },                  -- 在buffer中预览文件, 新buffer会覆盖旧buffer
-                { key = "<C-o>",                          action = "preview" },                  -- 在新buffer中打开文件
-                { key = "<C-r>",                          action = "rename" },                   -- 文件重命名
-                { key = "<C-n>",                          action = "create" },                   -- 创建文件
-                { key = "<C-d>",                          action = "remove" },                   -- 移除文件
-                { key = "<C-x>",                          action = "cut" },                      -- 剪切文件
-                { key = "<C>",                            action = "cpoy" },                     -- 复制文件(<ctrl> + <c> 不生效)
-                { key = "<C-v>",                          action = "paste" },                    -- 粘贴文件
-                { key = "<C-i>",                          action = "toggle_file_info" },         -- 显示文件信息
-                { key = "<C-k>",                          action = "silent_change_dir_action" }, -- 更改当前目录(联动telescope使用)
-                { key = { "r", "R" },                     action = "refresh" },                  -- 刷新目录
-                { key = "u",                              action = "dir_up" },                   -- 移动至前一个父目录
-                { key = "?",                              action = "toggle_help" },              -- 快捷键提示
-                { key = "y",                              action = "copy_name" },                -- 复制文件名
-                { key = "Y",                              action = "copy_path" },                -- 复制文件路径
-                { key = "S",                              action = "split" },                    -- 水平打开文件
-                { key = "V",                              action = "vsplit" },                   -- 垂直打开文件
-                { key = "Y",                              action = "copy_path" },                -- 复制文件路径
-                { key = "<C-g>",                          action = "toggle_git_ignored" },       -- 显示/隐藏git忽略的文件
-                { key = "[g",                             action = "prev_git_item" },
-                { key = "]g",                             action = "next_git_item" },
-                -- 快捷键置空
-                {
-                    key = { "I", "J", "H", "K", "O", "<2-RightMouse>", "<C-]>", "<C-t>", "<", ">", "P", "BS", "a", "d",
-                        "D",
-                        "gy", "-", "s", "g?", "W", "n", "N", "," },
-                    action = ""
-                },
-            }
+            custom_only = true,
         },
     },
     renderer = {
@@ -236,9 +203,11 @@ actions.custom_keypress_funcs = {
 }
 
 
+-- ====================================================  键盘映射  ====================================================
+local keymaps = require('configs.nvim-tree.keymaps')
+
+
+config.on_attach = keymaps.on_attach
 nvim_tree.setup(config)
 
 nvim_tree_api.tree.open()
-
--- ====================================================  键盘映射  ====================================================
-require('configs.nvim-tree.keymaps')
