@@ -94,7 +94,7 @@ local debug = Terminal:new({
         border = "curved",
         height = math.ceil(max_height * 0.7),
         width = math.ceil(max_width * 0.8),
-        winblend = 10, -- 透明度
+        -- winblend = 10, -- 透明度, 启用后有一定概率会在光标附近显示异常
     },
     on_open = function(term)
         vim.cmd("startinsert!") -- 进入输入模式
