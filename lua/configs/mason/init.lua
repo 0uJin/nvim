@@ -87,8 +87,8 @@ local default_settings = {
     },
 }
 
-elements.servers = { "vimls", "lua_ls", "gopls", "pyright", "rust_analyzer", "yamlls", "sqlls", "jsonls", "html", "cssls",
-    "bashls", "prosemd_lsp", "tsserver" }
+elements.servers = { "vimls", "lua_ls", "gopls", "pyright", "rust_analyzer", "yamlls", "sqlls", "jsonls", "html",
+    "cssls", "bashls", "prosemd_lsp", "tsserver", "taplo" }
 
 mason.setup(default_settings)
 mason_lspconfig.setup({
