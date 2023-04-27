@@ -149,19 +149,29 @@ local mason = require('configs.mason.init')
 local servers = mason.servers
 
 for _, lsp in pairs(servers) do
-    local _on_attach = on_attach
-    if lsp == 'pyright' then
-        _on_attach = python_on_attach
-    else
-        if lsp == 'prosemd_lsp' then
-            _on_attach = markdown_on_attach
-        end
-    end
-    require('lspconfig')[lsp].setup {
-        on_attach = _on_attach,
+    local lsp_config = {
+        on_attach = on_attach,
         flags = {
             debounce_text_changes = 150,
         },
         capabilities = capabilities
     }
+
+    if lsp == 'pyright' then
+        lsp_config.on_attach = python_on_attach
+    end
+
+    if lsp == 'prosemd_lsp' then
+        lsp_config.on_attach = markdown_on_attach
+    end
+
+    if lsp == 'yamlls' then
+        lsp_config.settings = {
+            yaml = {
+                keyOrdering = false
+            }
+        }
+    end
+
+    require('lspconfig')[lsp].setup(lsp_config)
 end
