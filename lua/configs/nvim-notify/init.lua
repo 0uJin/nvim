@@ -44,7 +44,7 @@ require("telescope").load_extension("notify")
 require('configs.nvim-notify.colors')
 
 -- ====================================================  进度展示  ====================================================
-require('configs.nvim-notify.progress')
+-- require('configs.nvim-notify.progress')
 
 -- ====================================================  功能行为  ====================================================
 require('configs.nvim-notify.action')

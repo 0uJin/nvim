@@ -203,4 +203,7 @@ local config = {
     format = {}, --- @see section on formatting
 }
 
+local views = require('noice.config.views')
+views.defaults.mini.position.row = -2
+
 noice.setup(config)
