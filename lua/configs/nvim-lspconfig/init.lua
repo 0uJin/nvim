@@ -124,22 +124,6 @@ local on_attach = function(client, bufnr)
     set_keymap(bufnr)
 end
 
--- python专用(pyright不支持format)
-local python_on_attach = function(client, bufnr)
-    lsp_highlight_document(client)
-    set_keymap(bufnr)
-    -- python 代码格式化
-    nvim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', '<cmd> :Autoformat <CR>', opts)
-end
-
--- markdown专用(pyright不支持format)
-local markdown_on_attach = function(client, bufnr)
-    lsp_highlight_document(client)
-    set_keymap(bufnr)
-    -- python 代码格式化
-    nvim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', '<cmd> :TableFormat <CR>', opts)
-end
-
 -- 增强 LSP 补全
 local capabilities = nvim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -157,14 +141,7 @@ for _, lsp in pairs(servers) do
         capabilities = capabilities
     }
 
-    if lsp == 'pyright' then
-        lsp_config.on_attach = python_on_attach
-    end
-
-    if lsp == 'prosemd_lsp' then
-        lsp_config.on_attach = markdown_on_attach
-    end
-
+    -- 关闭<yamlls>关键字排序检测
     if lsp == 'yamlls' then
         lsp_config.settings = {
             yaml = {
