@@ -112,6 +112,12 @@ local plugins = {
         configs = 'configs.nvim-ufo.init',
     },
 
+    -- 代码格式化
+    {
+        package = { 'jose-elias-alvarez/null-ls.nvim' },
+        configs = 'configs.null-ls.init',
+    },
+
     -- golang插件
     {
         package = { 'ray-x/go.nvim' },
