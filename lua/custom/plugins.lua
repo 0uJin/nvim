@@ -186,9 +186,15 @@ local plugins = {
 
     -- 数值快速转换, ture <---> false, == <---> != , 等...
     {
-        package = {'AndrewRadev/switch.vim'},
+        package = { 'AndrewRadev/switch.vim' },
         configs = 'configs.switch.init'
     },
+
+    -- UI组件
+    {
+        package = { 'MunifTanjim/nui.nvim' },
+        configs = 'configs.nui.init',
+    }
 
 }
 
