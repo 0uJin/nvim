@@ -127,8 +127,8 @@ noremap('', 'K', '5j')
 noremap('', 'J', '5h')
 -- 右5行
 noremap('', 'L', '5l')
--- q更改为:qa (误触率高)
-noremap('', 'q', ':qa')
+-- 取消q操作 (误触率高)
+noremap('', 'q', '<nop>')
 --  x操作不存储至剪切板, ("_ 黑洞寄存器)
 noremap('', 'x', '"_x')
 
