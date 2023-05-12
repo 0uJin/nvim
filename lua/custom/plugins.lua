@@ -7,14 +7,12 @@ end
 local nvim = vim
 local packer = require('packer')
 
--- packer.nvim 配置在 nvim.opt 上使用, 不需要该配置注释即可
-nvim.cmd([[packadd packer.nvim]])
-
 -- 插件列表
 local plugins = {
     -- neovim控件管理插件
     {
-        package = { 'wbthomason/packer.nvim' }
+        package = { 'wbthomason/packer.nvim' },
+        command = 'packadd packer.nvim', -- packer.nvim 配置在 nvim.opt 上使用, 不需要该配置注释即可
     },
 
     -- Neovim的Lua库，它提供了开发Neovim插件所需的基本Lua函数
@@ -187,7 +185,7 @@ local plugins = {
     -- 数值快速转换, ture <---> false, == <---> != , 等...
     {
         package = { 'AndrewRadev/switch.vim' },
-        configs = 'configs.switch.init'
+        configs = 'configs.switch.init',
     },
 
     -- UI组件
@@ -197,6 +195,24 @@ local plugins = {
     }
 
 }
+
+-- 执行命令
+local function exec_command(plugin)
+    if plugin.command == nil or plugin.command == '' then
+        return
+    end
+
+    nvim.cmd(plugin.command) -- 执行命令
+end
+
+-- 加载插件配置
+local function require_configs(plugin)
+    if plugin.configs == nil or plugin.configs == '' then
+        return
+    end
+
+    require(plugin.configs) -- 加载插件配置
+end
 
 -- 启用插件
 local function startup()
@@ -210,12 +226,11 @@ local function startup()
         -- 添加需要启用的插件
         table.insert(startup_plugins, plugin.package)
 
-        if plugin.configs == nil or plugin.configs == '' then
-            goto continue
-        end
-
         -- 加载插件配置
-        require(plugin.configs)
+        require_configs(plugin)
+
+        -- 执行命令
+        exec_command(plugin)
 
         :: continue ::
     end
