@@ -38,6 +38,9 @@ table.insert(elements.switch_custom_definitions, {'width', 'height'})
 table.insert(elements.switch_custom_definitions, {'next', 'previous'})
 table.insert(elements.switch_custom_definitions, {'prefix', 'suffix'})
 table.insert(elements.switch_custom_definitions, {'horizontal', 'vertical'})
+-- -------------------------------------------------- 系统变量 --------------------------------------------------
+table.insert(elements.switch_custom_definitions, {'linux', 'windows', 'darwin'})
+table.insert(elements.switch_custom_definitions, {'amd64', 'arm64'})
 
 -- ================================================ 返回通用元素 ================================================
 return elements
