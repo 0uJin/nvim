@@ -38,9 +38,6 @@ local config = {
         number = false,
         relativenumber = false,
         signcolumn = "yes",
-        mappings = {
-            custom_only = true,
-        },
     },
     renderer = {
         add_trailing = false,
