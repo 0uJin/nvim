@@ -124,7 +124,7 @@ local plugins = {
 
     -- 文件搜索框架
     {
-        package = { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = 'nvim-lua/plenary.nvim' },
+        package = { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' },
         configs = 'configs.telescope.init'
     },
 
