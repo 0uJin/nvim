@@ -87,6 +87,7 @@ local default_settings = {
     },
 }
 
+-- elements.servers = { "gopls@v0.13.2" } -- 指定版本, @x.x.x
 elements.servers = { "vimls", "lua_ls", "gopls", "pyright", "rust_analyzer", "yamlls", "sqlls", "jsonls", "html",
     "cssls", "bashls", "prosemd_lsp", "tsserver", "taplo" }
 
