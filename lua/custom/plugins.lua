@@ -100,7 +100,7 @@ local plugins = {
 
     -- 代码调试
     {
-        package = { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } },
+        package = { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' } },
         configs = 'configs.nvim-dap-ui.init',
     },
 
