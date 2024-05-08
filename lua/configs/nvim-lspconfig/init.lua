@@ -7,9 +7,9 @@ local nvim = vim
 -- 诊断样式定制 <start> (lspsaga存在时,该配置无效)
 local signs = {
     { name = 'DiagnosticSignError', text = '' },
-    { name = 'DiagnosticSignWarn',  text = '' },
-    { name = 'DiagnosticSignHint',  text = '' },
-    { name = 'DiagnosticSignInfo',  text = '' },
+    { name = 'DiagnosticSignWarn', text = '' },
+    { name = 'DiagnosticSignHint', text = '' },
+    { name = 'DiagnosticSignInfo', text = '' },
 }
 
 for _, sign in ipairs(signs) do
@@ -127,6 +127,7 @@ end
 -- 增强 LSP 补全
 local capabilities = nvim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities.textDocument.foldingRange = { dynamicRegistration = false, lineFoldingOnly = true, }
 
 -- 自动安装, 从nvim-lsp-installer插件中获取安装列表
 local mason = require('configs.mason.init')
@@ -145,7 +146,10 @@ for _, lsp in pairs(servers) do
     if lsp == 'yamlls' then
         lsp_config.settings = {
             yaml = {
-                keyOrdering = false
+                keyOrdering = false,
+                schemas = {
+                    kubernetes = "/*.yaml", -- Add the schema for gitlab piplines
+                },
             }
         }
     end
