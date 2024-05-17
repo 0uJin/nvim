@@ -19,7 +19,6 @@ nvim.opt.updatetime = 1000
 nvim.opt.fileencodings = 'ucs-bom,utf-8,cp936'
 nvim.opt.fileencoding = 'utf-8'
 nvim.opt.encoding = 'utf-8'
-nvim.opt.termencoding = 'utf-8'
 
 -- ==================================================== 显示 ====================================================
 -- 显示正在输入的命令
