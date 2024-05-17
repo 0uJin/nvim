@@ -28,7 +28,7 @@ local plugins = {
 
     -- tab页签样式
     {
-        package = { 'akinsho/bufferline.nvim', tag = 'v2.*', requires = 'kyazdani42/nvim-web-devicons' },
+        package = { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' },
         configs = 'configs.bufferline.init',
     },
 
