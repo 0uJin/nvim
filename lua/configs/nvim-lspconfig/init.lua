@@ -94,8 +94,7 @@ local function set_keymap(bufnr)
     -- 根据选中的[参数]、[函数]跳转(打开新buffer页)
     -- nvim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd> lua vim.lsp.buf.definition() <CR>', opts)
     -- 参数、函数重命名
-    -- nvim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>r', '<cmd> lua vim.lsp.buf.rename() <CR>', opts)
-    nvim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>r', '<cmd> lua require("lspsaga.rename").rename() <CR>', opts)
+    nvim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>r', '<cmd> lua vim.lsp.buf.rename() <CR>', opts)
     -- 代码格式化
     nvim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', '<cmd> lua vim.lsp.buf.format({ async = true }) <CR>', opts)
     -- 查询函数被引用情况
