@@ -63,12 +63,6 @@ local plugins = {
         configs = 'configs.mason.init',
     },
 
-    -- lsp美化
-    {
-        package = { 'tami5/lspsaga.nvim' },
-        configs = 'configs.lspsaga.init',
-    },
-
     -- 代码补全
     {
         package = {
