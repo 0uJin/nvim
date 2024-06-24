@@ -47,11 +47,11 @@ end
 gitsigns.setup({
     signs                        = {
         -- , numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn'
-        add          = { hl = 'GitSignsAdd', text = '│' },
-        change       = { hl = 'GitSignsChange', text = '│' },
-        delete       = { hl = 'GitSignsDelete', text = '_' },
-        topdelete    = { hl = 'GitSignsDelete', text = '‾' },
-        changedelete = { hl = 'GitSignsChange', text = '~' },
+        add          = { text = '│' },
+        change       = { text = '│' },
+        delete       = { text = '_' },
+        topdelete    = { text = '‾' },
+        changedelete = { text = '~' },
     },
     signcolumn                   = true,  -- Toggle with `:Gitsigns toggle_signs`
     numhl                        = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -81,9 +81,6 @@ gitsigns.setup({
         relative = 'cursor',
         row = 0,
         col = 1
-    },
-    yadm                         = {
-        enable = false
     },
     on_attach                    = on_attach,
 })
