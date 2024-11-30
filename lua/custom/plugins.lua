@@ -1,11 +1,25 @@
 -- ################################################## 插件管理 ##################################################
-local status, _ = pcall(require, 'packer')
-if not status then
-    return
-end
-
 local nvim = vim
-local packer = require('packer')
+local lazypath = nvim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+if not (nvim.uv or nvim.loop).fs_stat(lazypath) then
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = nvim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if nvim.v.shell_error ~= 0 then
+        nvim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out,                            "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        nvim.fn.getchar()
+        os.exit(1)
+    end
+end
+nvim.opt.rtp:prepend(lazypath)
+
+-- 确保在设置'mapleader'和'maplocalleader'之前加载lazy.nvim插件,使映射正确
+nvim.g.mapleader = " "
+nvim.g.maplocalleader = "\\"
 
 -- 插件列表
 local plugins = {
@@ -47,7 +61,7 @@ local plugins = {
 
     -- 浮窗终端
     {
-        package = { 'akinsho/toggleterm.nvim', tag = '*' },
+        package = { 'akinsho/toggleterm.nvim' },
         configs = 'configs.toggleterm.init',
     },
 
@@ -229,10 +243,18 @@ local function startup()
         :: continue ::
     end
 
-    return packer.startup({
-        startup_plugins,
-        config = {},
-        rocks = {},
+    -- 更改默认按键
+    local ViewConfig = require("lazy.view.config")
+    -- 更改全部安装快捷键: 'I' -> 'O'
+    ViewConfig.commands.install.key = 'O'
+    -- 更改安装快捷键: 'i' -> 'i'
+    ViewConfig.commands.install.key_plugin = 'o'
+
+    return require("lazy").setup({
+        -- 插件列表
+        spec = startup_plugins,
+        -- 自动检查插件的更新
+        checker = { enabled = false },
     })
 end
 
