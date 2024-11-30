@@ -1,6 +1,7 @@
 -- ################################################## 插件管理 ##################################################
 local nvim = vim
-local lazypath = nvim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local plugins_path = nvim.fn.stdpath("data") .. '/site/pack/lazy/start'
+local lazypath = plugins_path .. '/lazy.nvim'
 
 if not (nvim.uv or nvim.loop).fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -23,12 +24,6 @@ nvim.g.maplocalleader = "\\"
 
 -- 插件列表
 local plugins = {
-    -- neovim控件管理插件
-    {
-        package = { 'wbthomason/packer.nvim' },
-        command = 'packadd packer.nvim', -- packer.nvim 配置在 nvim.opt 上使用, 不需要该配置注释即可
-    },
-
     -- Neovim的Lua库，它提供了开发Neovim插件所需的基本Lua函数
     {
         package = { 'nvim-lua/plenary.nvim' }
@@ -42,13 +37,13 @@ local plugins = {
 
     -- tab页签样式
     {
-        package = { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' },
+        package = { 'akinsho/bufferline.nvim', dependencies = 'kyazdani42/nvim-web-devicons' },
         configs = 'configs.bufferline.init',
     },
 
     -- 文件树
     {
-        package = { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' },
+        package = { 'kyazdani42/nvim-tree.lua', dependencies = 'kyazdani42/nvim-web-devicons' },
         configs = 'configs.nvim-tree.init',
     },
 
@@ -81,7 +76,7 @@ local plugins = {
     {
         package = {
             'hrsh7th/nvim-cmp',
-            requires = {
+            dependencies = {
                 'onsails/lspkind-nvim', -- 为补全添加类似 vscode 的图标
                 'hrsh7th/cmp-nvim-lsp', -- 替换内置 omnifunc，获得更多补全
                 'hrsh7th/cmp-buffer',   -- 缓冲区补全
@@ -108,13 +103,13 @@ local plugins = {
 
     -- 代码调试
     {
-        package = { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' } },
+        package = { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' } },
         configs = 'configs.nvim-dap-ui.init',
     },
 
     -- 代码折叠
     {
-        package = { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' },
+        package = { 'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async' },
         configs = 'configs.nvim-ufo.init',
     },
 
@@ -132,7 +127,7 @@ local plugins = {
 
     -- 文件搜索框架
     {
-        package = { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' },
+        package = { 'nvim-telescope/telescope.nvim', dependencies = 'nvim-lua/plenary.nvim' },
         configs = 'configs.telescope.init'
     },
 
@@ -144,7 +139,7 @@ local plugins = {
 
     -- 状态栏样式
     {
-        package = { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } },
+        package = { 'nvim-lualine/lualine.nvim', dependencies = { 'kyazdani42/nvim-web-devicons', opt = true } },
         configs = 'configs.lualine.init',
     },
 
@@ -156,7 +151,7 @@ local plugins = {
 
     -- 各中弹窗交互, (命令行弹窗, 信息提示弹窗, 项目加载进度)
     {
-        package = { 'folke/noice.nvim', requires = { 'MunifTanjim/nui.nvim', 'rcarriga/nvim-notify' } },
+        package = { 'folke/noice.nvim', dependencies = { 'MunifTanjim/nui.nvim', 'rcarriga/nvim-notify' } },
         configs = 'configs.noice.init',
     },
 
@@ -168,7 +163,7 @@ local plugins = {
 
     -- git文件对比
     {
-        package = { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' },
+        package = { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
         configs = 'configs.diffview.init',
     },
 
@@ -187,7 +182,6 @@ local plugins = {
     {
         package = { 'mg979/vim-visual-multi' },
         configs = 'configs.vim-visual-multi.init',
-        command = 'packadd! vim-visual-multi',
     },
 
     -- 数值快速转换, ture <---> false, == <---> != , 等...
@@ -244,13 +238,15 @@ local function startup()
     end
 
     -- 更改默认按键
-    local ViewConfig = require("lazy.view.config")
+    local view_config = require("lazy.view.config")
     -- 更改全部安装快捷键: 'I' -> 'O'
-    ViewConfig.commands.install.key = 'O'
+    view_config.commands.install.key = 'O'
     -- 更改安装快捷键: 'i' -> 'i'
-    ViewConfig.commands.install.key_plugin = 'o'
+    view_config.commands.install.key_plugin = 'o'
 
     return require("lazy").setup({
+        -- 更改插件安装路径
+        root = plugins_path,
         -- 插件列表
         spec = startup_plugins,
         -- 自动检查插件的更新
