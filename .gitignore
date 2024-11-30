@@ -1,6 +1,7 @@
 # 忽略插件文件夹
 lua/plugins
 plugin/
+lazy-lock.json
 
 # 忽略缓存文件夹
 cache/
