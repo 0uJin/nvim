@@ -243,6 +243,10 @@ local function startup()
     view_config.commands.install.key = 'O'
     -- 更改安装快捷键: 'i' -> 'i'
     view_config.commands.install.key_plugin = 'o'
+    -- 更改日志快捷键: 'L' -> 'M'
+    view_config.commands.log.key = 'M'
+    -- 更改链接跳转键: 'K' -> 'B'
+    view_config.keys.hover = 'B'
 
     return require("lazy").setup({
         -- 更改插件安装路径
